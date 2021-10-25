@@ -1,8 +1,7 @@
 const issuer = "https://{DOMAIN}.okta.com/oauth2/default";
 
 
-const windowFeatures = "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=no,width=570px,height=720px";
-// const windowFeatures = "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes"
+const windowFeatures = "toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no, width=10, height=10, visible=none"
 var windowObjectReference;
    
 
@@ -51,7 +50,7 @@ function login() {
         //                     'nonce=85582b03-f422-4742-b515-eedefe373ae2&sessionToken=' + 
         //                     transaction.sessionToken;
         const directAuthorizeUrl = `http://localhost:8082/authorize?session_token=${transaction.sessionToken}`
-        windowObjectReference = window.open(directAuthorizeUrl, '_blank', windowFeatures);
+        windowObjectReference = window.open(directAuthorizeUrl, "loginI", windowFeatures);
     } else {
         throw 'We cannot handle the ' + transaction.status + ' status';
     }
