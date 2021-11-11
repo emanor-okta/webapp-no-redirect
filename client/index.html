@@ -25,35 +25,36 @@
     <div class="container">
       <h1 class="text-center">Web App No Redirect Hidden iFrame Sample</h1>
       <div id="messageBox" style="display: none">
-      </div>
+    </div>
 
-      <div id="okta-login-container">
-        <form>
-          <div class="form-row align-items-center">
-            <div class="col-auto">
-              <label class="sr-only" for="userName">User Name:</label>
-              <input type="text" class="form-control mb-2" id="userName" placeholder="<username>">
-            </div>
-            <div class="col-7">
-              <label class="sr-only" for="password">Password:</label>
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                
-                </div>
-                <input type="password" class="form-control" id="password" placeholder="<password>">
+    <div id="okta-login-container" style="display: none">
+      <form>
+        <div class="form-row align-items-center">
+          <div class="col-auto">
+            <label class="sr-only" for="userName">User Name:</label>
+            <input type="text" class="form-control mb-2" id="userName" placeholder="<username>">
+          </div>
+          <div class="col-7">
+            <label class="sr-only" for="password">Password:</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+              
               </div>
-            </div>
-            <div class="col-auto">
-              <button type="button" class="btn btn-outline-dark btn-sm" id="login">Login</button>
+              <input type="password" class="form-control" id="password" placeholder="<password>">
             </div>
           </div>
-        </form>  
-        <div id="loginError" class="alert alert-danger" role="alert" style="display: none">Error</div>
-        <div id="loginSuccess" class="alert alert-primary" role="alert" style="display: none">Success</div>
-      </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-outline-dark btn-sm" id="login">Login</button>
+          </div>
+        </div>
+      </form>  
+      <div id="loginError" class="alert alert-danger" role="alert" style="display: none">Error</div>
+      <div id="loginSuccess" class="alert alert-primary" role="alert" style="display: none">Success</div>
+    </div>
 
-      <div id="taskList" style="display: none">
-      </div>
+    <div id="loading" style="display: block">
+      <h3 class="text-center">Checking For Session</h3>
+    </div>
 
     <script type="text/javascript">
       document.getElementById('login').onclick = login;
@@ -67,6 +68,7 @@
       style="display: none"
       >
     </iframe>
+  
     
   </body>
 </html>

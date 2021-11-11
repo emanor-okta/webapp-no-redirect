@@ -17,8 +17,7 @@ import (
 )
 
 const AUTHORIZE = "%s/v1/authorize?client_id=%s&response_type=code&response_mode=query&" +
-	"scope=openid+profile+email&redirect_uri=%s&state=%s&" +
-	"nonce=85582b03-f422-4742-b515-eedefe373ae2&sessionToken=%s"
+	"scope=openid+profile+email&redirect_uri=%s&state=%s&nonce=%s&sessionToken=%s"
 
 var config Configuration
 var states map[string]int64
@@ -41,18 +40,13 @@ func main() {
  */
 func handleAuthorize(res http.ResponseWriter, req *http.Request) {
 	sessionToken := req.URL.Query().Get("session_token")
-	if len(sessionToken) == 0 {
-		fmt.Printf("Error no Session Token passed to /authorize")
-		s := buildReply(`'{"error": "No SessionToken Present"}'`)
-		res.WriteHeader(200)
-		res.Write([]byte(s))
-	} else {
-		uuid := uuid.NewString()
-		states[uuid] = time.Now().UnixNano()
-		url := fmt.Sprintf(AUTHORIZE, config.ISSUER, config.CLIENT_ID, config.REDIRECT_URI, uuid, sessionToken)
-		fmt.Printf("\nauthorize URL: %s\n", url)
-		http.Redirect(res, req, url, http.StatusMovedPermanently)
-	}
+	req_uuid := uuid.NewString()
+	req_nonce := uuid.NewString()
+	states[req_uuid] = time.Now().UnixNano()
+	url := fmt.Sprintf(AUTHORIZE, config.ISSUER, config.CLIENT_ID, config.REDIRECT_URI, req_uuid, req_nonce, sessionToken)
+	fmt.Printf("\nauthorize URL: %s\n", url)
+	http.Redirect(res, req, url, http.StatusMovedPermanently)
+	// }
 }
 
 /*
